@@ -1,0 +1,21 @@
+services:
+  plantus_db:
+    image: mariadb:11.4.1-rc-jammy
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: plantus
+    ports:
+      - 3307:3306
+
+  
+  adminer:
+    image: adminer:4.8.1-standalone
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_DB_HOST=plantus_db
+      - ADMINER_DEFAULT_DB_NAME=plantus
+      - ADMINER_DESIGN=dracula
+      - ADMINER_PLUGINS=tables-filter tinymce
+    ports:
+      - 8081:8080

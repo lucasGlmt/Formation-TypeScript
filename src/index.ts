@@ -1,7 +1,14 @@
+import "reflect-metadata";
 import express from 'express';
+import { AppDataSource } from './app-datasource';
 
 // Initialisation d'express
 const app = express();
+
+// Connexion à la BDD
+AppDataSource.initialize()
+    .then(() => console.log("Database connected"))
+    .catch(err => console.log(err));
 
 
 // Déclaration des routes
